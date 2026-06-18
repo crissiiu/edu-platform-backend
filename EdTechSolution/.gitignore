@@ -1,0 +1,19 @@
+## Thư mục chứa file build của .NET
+[Db]in/
+[Oo]bj/
+[Ll]og/
+
+## Thư mục cấu hình ẩn của Visual Studio
+.vs/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+## File cấu hình chứa mật khẩu/secrets môi trường local
+appsettings.Development.json
+*.secrets.json
+
+## Thư mục sinh ra do hệ điều hành
+.DS_Store
+thumbs.db
