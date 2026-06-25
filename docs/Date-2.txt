@@ -1,0 +1,26 @@
+BÁO CÁO TIẾN ĐỘ DỰ ÁN - NGÀY 2
+=========================================
+
+1. Công việc đã hoàn thành:
+-----------------------------------------
+- Quản lý nhánh Git: Khởi tạo và làm việc trên nhánh tính năng chuyên biệt (feature/day-2-db-infrastructure).
+- Hoàn thiện cấu hình lõi dự án Affiliate.SharedLibrary (Netcode-Hub Style):
+  + Responses: Chuẩn hóa cấu trúc dữ liệu trả về của API toàn hệ thống bằng C# Record (Response.cs).
+  + Interface: Triển khai Generic Repository Pattern xử lý các tác vụ CRUD tổng quát (IGenericInterface.cs).
+  + Logs: Tích hợp Serilog hỗ trợ ghi log lỗi đồng nhất ra Console và File hệ thống (LogException.cs).
+  + Middleware: Thiết lập bộ xử lý lỗi tập trung toàn cục (GlobalException.cs) và cơ chế bảo mật chặn truy cập trực tiếp ngoài Gateway (ListenToOnlyApiGateway.cs).
+  + Dependency Injection: Viết extension method kích hoạt cơ sở dữ liệu và chính sách dùng chung chỉ với một dòng lệnh (SharedServiceContainer.cs).
+- Thiết lập Database & Fluent API tối ưu SEO cho Catalog Service:
+  + Cài đặt đồng bộ các gói NuGet EF Core bản 9.0.x cho PostgreSQL.
+  + Xây dựng CatalogDbContext.cs điều khiển cấu trúc dữ liệu tường minh.
+  + Cấu hình Fluent API tự động tạo chỉ mục (HasIndex().IsUnique()) cho các trường Slug của Danh mục và Sản phẩm, giúp tối ưu hóa tốc độ truy vấn URL chuẩn SEO cho Next.js.
+- Khắc phục xung đột hạ tầng và thực thi Migrations:
+  + Phát hiện và xử lý thành công lỗi đụng độ cổng kết nối (Port Collision) với dịch vụ Postgres sẵn có trên hệ điều hành Windows.
+  + Điều chỉnh cổng kết nối Docker Postgres sang 5433, làm sạch phân vùng lưu trữ cũ (Volume Data) và cấu hình lại appsettings.json.
+  + Chạy thành công lệnh tạo file cấu trúc (Add-Migration InitialCreate) và đẩy dữ liệu tạo bảng thực tế xuống Docker (Update-Database).
+
+2. Trạng thái nghiệm thu:
+-----------------------------------------
+- Mã nguồn hệ thống: Biên dịch thành công 100% (0 lỗi, 0 cảnh báo).
+- Cơ sở dữ liệu: Tạo thành công các bảng thực thể (Categories, Products, PriceHistories) dưới dạng quan hệ 1-Nhiều chuẩn xác.
+- Công cụ quản trị trực quan: Kết nối thành công pgAdmin4 vào container Docker qua cổng 5433, kiểm tra trực quan cấu trúc bảng trống xanh mượt sẵn sàng cho các bước tiếp theo.
