@@ -1,0 +1,23 @@
+BÁO CÁO TIẾN ĐỘ DỰ ÁN - NGÀY 1
+=========================================
+
+1. Công việc đã hoàn thành
+-----------------------------------------
+- Thiết lập cấu trúc Monorepo Phân chia rõ ràng khu vực dành cho backend và frontend.
+- Khởi tạo cấu trúc Clean Architecture theo chuẩn Netcode-Hub
+  + Tạo giải pháp tổng thể gồm 5 dự án thành phần Affiliate.SharedLibrary, Catalog.Domain, Catalog.Application, Catalog.Infrastructure, và Catalog.Presentation.
+  + Thiết lập chính xác luồng phụ thuộc (Project References) hướng tâm theo đúng nguyên lý kiến trúc sạch.
+- Xây dựng lớp Core Domain Định nghĩa thành công các thực thể (Entities) cốt lõi phục vụ nghiệp vụ tổng hợp deal Category, Product, và PriceHistory.
+- Cấu hình và kích hoạt hạ tầng Local thông qua Docker Compose
+  + Khởi chạy Container PostgreSQL 16 bảo mật để lưu trữ dữ liệu sản phẩm.
+  + Khởi chạy Container RabbitMQ 3.13 phục vụ làm Message Broker điều phối sự kiện bất đồng bộ.
+  + Tích hợp Container pgAdmin hỗ trợ quản trị trực quan hệ quản trị cơ sở dữ liệu.
+- Quản lý mã nguồn và Bảo mật
+  + Viết file .gitignore tích hợp bảo vệ cho cả hệ sinh thái .NET Core và Node.jsNext.js.
+  + Tách biệt toàn bộ thông tin tài khoản, mật khẩu hạ tầng từ file docker-compose sang file cấu hình môi trường độc lập (.env).
+
+2. Trạng thái nghiệm thu
+-----------------------------------------
+- Mã nguồn backend Build thành công hoàn toàn (0 lỗi, 0 cảnh báo).
+- Hạ tầng Docker Tất cả các container (postgres, pgadmin, rabbitmq) đều vận hành ổn định ở chế độ ngầm (-d).
+- Quản lý Git Đã phân tách nhánh tính năng (featureday-1-base-architecture) sẵn sàng đẩy lên GitHub.
