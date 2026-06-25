@@ -1,19 +1,31 @@
-## Thư mục chứa file build của .NET
-[Db]in/
-[Oo]bj/
-[Ll]og/
-
-## Thư mục cấu hình ẩn của Visual Studio
-.vs/
-*.user
+## ======== .NET Core (Backend) ========
+bin/
+obj/
 *.suo
+*.user
 *.userosscache
 *.sln.docstates
+.vs/
+.idea/
+.rider/
+/backend/.store/
+/backend/artifacts/
+.env
 
-## File cấu hình chứa mật khẩu/secrets môi trường local
-appsettings.Development.json
-*.secrets.json
+## ======== Node / Next.js (Frontend) ========
+node_modules/
+.next/
+out/
+build/
+.pnpm-debug.log*
+yarn-error.log*
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
 
-## Thư mục sinh ra do hệ điều hành
+## ======== OS / Các file rác hệ điều hành ========
 .DS_Store
-thumbs.db
+Thumbs.db
+*.bak
+*.log
