@@ -16,6 +16,10 @@ namespace Catalog.Infrastructure.Data
         {
             base.OnModelCreating(modelBuilder);
 
+            modelBuilder.Entity<Category>().HasQueryFilter(c => !c.IsDeleted);
+            modelBuilder.Entity<Product>().HasQueryFilter(p => !p.IsDeleted);
+            modelBuilder.Entity<PriceHistory>().HasQueryFilter(ph => !ph.IsDeleted);
+
             // 1. Cấu hình bảng Category
             modelBuilder.Entity<Category>(entity =>
             {
@@ -67,6 +71,36 @@ namespace Catalog.Infrastructure.Data
                       .HasForeignKey(ph => ph.ProductId)
                       .OnDelete(DeleteBehavior.Cascade); // Xóa sản phẩm thì tự động xóa lịch sử giá của nó
             });
+        }
+
+
+        // ĐÁNH CHẶN TỰ ĐỘNG: Ghi vết lịch sử và thực thi xoá mềm trước khi lưu vào Postgres
+        public override Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
+        {
+            foreach (var entry in ChangeTracker.Entries<BaseEntity>())
+            {
+                switch (entry.State)
+                {
+                    // 1. Khi thêm mới dữ liệu
+                    case EntityState.Added:
+                        entry.Entity.CreatedAt = DateTime.UtcNow;
+                        entry.Entity.IsDeleted = false;
+                        break;
+
+                    // 2. Khi cập nhật dữ liệu
+                    case EntityState.Modified:
+                        entry.Entity.UpdatedAt = DateTime.UtcNow;
+                        break;
+
+                    // 3. KHI CÓ LỆNH XOÁ: Chặn đứng hành vi xoá cứng, chuyển thành cập nhật trạng thái
+                    case EntityState.Deleted:
+                        entry.State = EntityState.Modified; // Ép EF Core hiểu đây là lệnh Update chứ không phải Delete
+                        entry.Entity.IsDeleted = true;
+                        entry.Entity.DeletedAt = DateTime.UtcNow;
+                        break;
+                }
+            }
+            return base.SaveChangesAsync(cancellationToken);
         }
     }
 }
