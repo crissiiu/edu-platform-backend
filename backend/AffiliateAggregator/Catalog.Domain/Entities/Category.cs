@@ -1,8 +1,7 @@
 ﻿namespace Catalog.Domain.Entities
 {
-    public class Category
+    public class Category: BaseEntity
     {
-        public Guid Id { get; set; }
         public string Name { get; set; } = string.Empty;
         public string Slug { get; set; } = string.Empty; // Dùng cho SEO URL bên Next.js
 

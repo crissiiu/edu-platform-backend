@@ -1,8 +1,7 @@
 ﻿namespace Catalog.Domain.Entities
 {
-    public class Product
+    public class Product: BaseEntity
     {
-        public Guid Id { get; set; }
         public string Name { get; set; } = string.Empty;
         public string Slug { get; set; } = string.Empty;
         public string Description { get; set; } = string.Empty;
@@ -20,8 +19,6 @@
 
         // Trạng thái & Thời gian
         public bool IsAvailable { get; set; } = true;
-        public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
-        public DateTime UpdatedAt { get; set; } = DateTime.UtcNow;
 
         // Relationships
         public Guid CategoryId { get; set; }

@@ -1,0 +1,23 @@
+BÁO CÁO TIẾN ĐỘ DỰ ÁN - NGÀY 3
+=========================================
+
+1. Công việc đã hoàn thành:
+-----------------------------------------
+- Quản lý nhánh Git: Khởi tạo và thực thi toàn bộ logic trên nhánh tính năng (feature/day-3-catalog-api-repository).
+- Kiến trúc phân tách DTO (Data Transfer Objects) theo chuẩn Netcode-Hub:
+  + Xây dựng ProductDto phục vụ đóng gói và làm sạch dữ liệu API đầu ra (Get APIs).
+  + Xây dựng CreateProductDto và UpdateProductDto nhằm cô lập tuyệt đối Domain Entity gốc trước các can thiệp ngoài ý muốn từ Client.
+  + Tích hợp các thuộc tính ràng buộc dữ liệu nghiêm ngặt (Data Annotations) kèm thông báo tiếng Việt trực quan, tự động chặn đứng dữ liệu bẩn ở cửa ngõ API nhờ cơ chế [ApiController].
+- Hiện thực hóa lớp Hạ tầng (Infrastructure Persistence):
+  + Giải mã hoàn chỉnh các hàm xử lý dữ liệu trong GenericRepository.cs từ móng SharedLibrary.
+  + Phối hợp nhịp nhàng với bộ đánh chặn tự động (Interception) của DbContext để tự động điền mốc thời gian lưu vết hệ thống.
+- Xây dựng tầng Điều hướng API (Presentation Controllers):
+  + Triển khai trọn bộ 5 Endpoint chuẩn RESTful API cho ProductsController (/api/v1/Products).
+  + Bọc lót logic nghiệp vụ thương mại chặt chẽ: Tự động tính biên độ % giảm giá, chặn trùng tên sản phẩm, chặn trùng đường dẫn URL (Slug) chuẩn SEO.
+  + Đóng khóa bảo mật nâng cao: Chặn đứng hoàn toàn hành vi gửi lệnh PUT cố tình chỉnh sửa các sản phẩm đã rơi vào trạng thái xoá mềm (IsDeleted = true).
+
+2. Trạng thái nghiệm thu:
+-----------------------------------------
+- Mã nguồn hệ thống: Biên dịch thành công 100% (0 lỗi, 0 cảnh báo).
+- Giao diện Swagger UI: Hiển thị tường minh cấu trúc Schema ẩn thuộc tính hệ thống, kiểm thử thành công toàn bộ kịch bản Add - Get - Update - Soft Delete.
+- Đối soát PostgreSQL: Kiểm tra bằng pgAdmin4 xác nhận dữ liệu khi xoá vẫn lưu lại bằng chứng đối soát trong DB (IsDeleted = true, DeletedAt có dữ liệu) nhưng tự động ẩn khỏi giao diện người dùng.
