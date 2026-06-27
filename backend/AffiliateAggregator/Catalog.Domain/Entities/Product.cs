@@ -1,4 +1,4 @@
-﻿namespace Catalog.Domain.Entities
+namespace Catalog.Domain.Entities
 {
     public class Product: BaseEntity
     {
@@ -6,6 +6,7 @@
         public string Slug { get; set; } = string.Empty;
         public string Description { get; set; } = string.Empty;
         public string ImageUrl { get; set; } = string.Empty;
+        public List<string>? SecondaryImages { get; set; } = new List<string>();
 
         // Giá cả
         public decimal OriginalPrice { get; set; } // Giá gốc của sàn

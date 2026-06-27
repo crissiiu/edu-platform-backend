@@ -1,4 +1,4 @@
-﻿using Catalog.Domain.Entities;
+using Catalog.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 
 namespace Catalog.Infrastructure.Data
@@ -43,6 +43,7 @@ namespace Catalog.Infrastructure.Data
 
                 entity.Property(p => p.Description).HasMaxLength(2000);
                 entity.Property(p => p.ImageUrl).HasMaxLength(500);
+                entity.Property(p => p.SecondaryImages).HasColumnType("text[]");
 
                 // Định dạng tiền tệ chính xác, tránh sai số làm tròn
                 entity.Property(p => p.OriginalPrice).HasPrecision(18, 2);

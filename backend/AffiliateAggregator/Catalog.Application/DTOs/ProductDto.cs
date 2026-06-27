@@ -1,8 +1,5 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Catalog.Application.DTOs
 {
@@ -16,7 +13,9 @@ namespace Catalog.Application.DTOs
         decimal CurrentPrice,
         double DiscountPercentage,
         string SourcePlatform,
+        string RawProductUrl,
         string AffiliateUrl,
-        Guid CategoryId
+        Guid CategoryId,
+        List<string> SecondaryImages
     );
 }

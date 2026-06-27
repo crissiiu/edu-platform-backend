@@ -1,0 +1,24 @@
+BÁO CÁO TIẾN ĐỘ DỰ ÁN - NGÀY 4
+=========================================
+
+1. Công việc đã hoàn thành:
+-----------------------------------------
+- Quản lý nhánh Git: Tạo mới và cô lập toàn bộ mã nguồn Frontend trên nhánh tính năng (feature/day-4-frontend-modular-setup).
+- Khởi tạo hạ tầng Next.js App Router & Thiết kế hệ thống (Design System):
+  + Tạo mới dự án Next.js kết hợp chặt chẽ với TypeScript và TailwindCSS.
+  + Cấu hình thành công AntdRegistry giải quyết triệt để lỗi giật giao diện (Style Flicker) khi Server-Side Rendering (SSR).
+  + Thiết lập cấu trúc bọc Providers tập trung chứa đồng thời TanStack React Query, Ant Design và bộ thông báo react-hot-toast.
+- Triển khai Kiến trúc Mô-đun (Modular Architecture) chuẩn hóa:
+  + Áp dụng kiến trúc mô-đun hóa độc lập cho thư mục src/modules/dashboard giúp dễ dàng scale-up và bảo trì theo lát cắt tính năng (Vertical Slice).
+  + Định nghĩa các TypeScript interfaces (ProductDto, CreateProductDto...) đồng bộ 100% với cấu trúc C# DTOs ở Backend.
+- Xây dựng mạch kết nối dữ liệu và xử lý lỗi tự động (Axios Interceptor):
+  + Viết file api-service.ts cấu hình Axios Instance kết nối trực tiếp đến .NET Web API.
+  + Triển khai bộ đánh chặn Response Interceptor thông minh: Tự động phân tích cấu trúc lỗi ProblemDetails (Title, Detail) từ Middleware của C# bắn sang để kích hoạt hiển thị toast thông báo lỗi trực quan (400, 401, 403, 429, 408) lên UI.
+- Hiện thực hóa giao diện Core Dashboard:
+  + Triển khai Custom Hook useGetProducts tích hợp cơ chế caching dữ liệu của React Query.
+  + Thiết kế trang quản trị sản phẩm (/admin/products) sử dụng cấu trúc Ant Design Table kết hợp các class tiện ích của TailwindCSS để tối ưu giao diện Dashboard thoáng đãng, hiện đại.
+
+2. Trạng thái nghiệm thu:
+-----------------------------------------
+- Mã nguồn Frontend: Biên dịch thành công, không dính lỗi Hydration hay lỗi kiểu dữ liệu TypeScript.
+- Luồng dữ liệu Fullstack: Kết nối thông suốt, hiển thị chính xác danh sách sản phẩm thực tế từ cơ sở dữ liệu PostgreSQL lên bảng quản trị của Frontend theo thời gian thực.
